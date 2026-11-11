@@ -1,4 +1,0 @@
-/* Mon Choix Pneu — couche visuelle partagée */
-:root{--mcp-bg:#090713;--mcp-panel:#14111f;--mcp-text:#fff;--mcp-muted:#c8c4d7;--mcp-violet:#a855f7;--mcp-cyan:#22d3ee;--mcp-line:rgba(255,255,255,.14);--mcp-font:system-ui,-apple-system,"Segoe UI",sans-serif}
-html{scroll-behavior:smooth}body{font-family:var(--mcp-font)}[hidden]{display:none!important}button:focus-visible,a:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-visible{outline:3px solid var(--mcp-cyan);outline-offset:3px}
-@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto!important}*,*::before,*::after{scroll-behavior:auto!important;animation-duration:.01ms!important;transition-duration:.01ms!important}}
