@@ -1,0 +1,912 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#090713">
+  <meta name="description" content="Mon Choix Pneu à Montgesoye : trouvez et commandez vos pneus en ligne.">
+  <title>Mon Choix Pneu | Montgesoye</title>
+
+  <style>
+    :root {
+      --bg: #090713;
+      --panel: #14111f;
+      --white: #fff;
+      --muted: #c8c4d7;
+      --purple: #d400ff;
+      --cyan: #00e8ff;
+      --pink: #ff4fa3;
+      --line: rgba(255, 255, 255, .14);
+      --radius: 18px;
+      --shadow: 0 18px 55px rgba(0, 0, 0, .3);
+    }
+
+    * { box-sizing: border-box; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      margin: 0;
+      color: var(--white);
+      background:
+        radial-gradient(ellipse at 80% 0%, rgba(94, 0, 255, .2), transparent 32rem),
+        radial-gradient(ellipse at 0% 45%, rgba(0, 196, 255, .09), transparent 28rem),
+        var(--bg);
+      font: 16px/1.6 system-ui, -apple-system, "Segoe UI", sans-serif;
+    }
+
+    img { display: block; max-width: 100%; }
+    a { color: inherit; text-decoration: none; }
+    button, input, select, textarea { font: inherit; }
+
+    .container {
+      width: min(1120px, calc(100% - 36px));
+      margin-inline: auto;
+    }
+
+    /* Bandeau supérieur avec les boutons de contact */
+    .topbar {
+      padding: 10px 0;
+      background: linear-gradient(100deg, var(--purple), #762bff 55%, var(--cyan));
+      color: #090713;
+    }
+
+    .topbar-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 14px;
+    }
+
+    .topbar-text {
+      font-size: .88rem;
+      font-weight: 800;
+      letter-spacing: .04em;
+    }
+
+    .topbar-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 7px;
+      min-height: 42px;
+      padding: 9px 14px;
+      border: 1px solid rgba(255, 255, 255, .22);
+      border-radius: 12px;
+      background: linear-gradient(100deg, var(--purple), #762bff);
+      color: white;
+      font-size: .9rem;
+      font-weight: 800;
+      cursor: pointer;
+      box-shadow: 0 7px 24px rgba(150, 0, 255, .22);
+      transition: transform .2s ease, filter .2s ease;
+    }
+
+    .button:hover {
+      transform: translateY(-2px);
+      filter: brightness(1.12);
+    }
+
+    .topbar .button {
+      min-height: 36px;
+      padding: 6px 12px;
+      border-color: rgba(9, 7, 19, .2);
+      background: rgba(9, 7, 19, .88);
+      box-shadow: none;
+    }
+
+    header {
+      position: sticky;
+      z-index: 10;
+      top: 0;
+      border-bottom: 1px solid var(--line);
+      background: rgba(9, 7, 19, .94);
+      backdrop-filter: blur(14px);
+    }
+
+    .nav {
+      min-height: 82px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 22px;
+    }
+
+    /* Nom de l’entreprise, avec un style inspiré de l’affiche */
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      flex-shrink: 0;
+    }
+
+    .brand-mark {
+      display: grid;
+      place-items: center;
+      width: 48px;
+      height: 48px;
+      border: 2px solid var(--cyan);
+      border-radius: 15px;
+      color: var(--cyan);
+      font-size: .92rem;
+      font-weight: 1000;
+      letter-spacing: .04em;
+      box-shadow: 0 0 18px rgba(0, 232, 255, .18);
+    }
+
+    .brand-name {
+      display: flex;
+      flex-direction: column;
+      font-size: 1.1rem;
+      font-weight: 1000;
+      line-height: .98;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+    }
+
+    .brand-name .pneu {
+      margin-top: 4px;
+      background: linear-gradient(90deg, var(--purple), var(--pink));
+      background-clip: text;
+      -webkit-background-clip: text;
+      color: transparent;
+      -webkit-text-fill-color: transparent;
+      font-size: 1.16rem;
+      letter-spacing: .16em;
+    }
+
+    .brand-tagline {
+      margin-top: 6px;
+      color: var(--cyan);
+      font-size: .65rem;
+      font-weight: 800;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 22px;
+      color: var(--muted);
+      font-size: .92rem;
+    }
+
+    .nav-links a {
+      transition: color .2s ease;
+    }
+
+    .nav-links a:hover,
+    .footer-inner a:hover {
+      color: var(--cyan);
+    }
+
+    .menu-toggle {
+      display: none;
+      padding: 8px 11px;
+      border: 1px solid var(--line);
+      border-radius: 10px;
+      background: var(--panel);
+      color: white;
+      font-size: 1.2rem;
+      cursor: pointer;
+    }
+
+    .hero { padding: 62px 0; }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      align-items: center;
+      justify-items: center;
+      gap: 42px;
+    }
+
+    .hero-grid > div:first-child {
+      grid-column: 2;
+      grid-row: 1;
+      text-align: center;
+    }
+
+    .hero-image { grid-column: 1; grid-row: 1; }
+
+    .hero-services { grid-column: 2; grid-row: 1; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; width: 100%; }
+    .hero-services > .eyebrow { grid-column: 1 / -1; margin: 0 0 2px; text-align: left; }
+    .service-button { display: flex; flex-direction: column; align-items: flex-start; justify-content: center; width: 100%; min-height: 122px; padding: 16px; text-align: left; color: inherit; font: inherit; text-decoration: none; cursor: pointer; }
+    .service-button strong { display: block; margin-top: 7px; font-size: 1rem; }
+    .service-button small { display: block; margin-top: 5px; color: var(--muted); font-size: .82rem; line-height: 1.35; }
+    a.service-button:hover { transform: translateY(-3px); border-color: var(--cyan); box-shadow: 0 12px 30px rgba(0,232,255,.12); }
+    .service-button.service-disabled { opacity: .7; cursor: not-allowed; }
+    .coming-badge { position: absolute; top: 10px; right: 10px; padding: 4px 8px; border: 1px solid rgba(212,0,255,.55); border-radius: 99px; background: #241333; color: #ff9cff; font-size: .67rem; font-weight: 900; letter-spacing: .04em; text-transform: uppercase; }
+
+    .eyebrow {
+      margin-bottom: 10px;
+      color: var(--cyan);
+      font-size: .82rem;
+      font-weight: 800;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+    }
+
+    h1 {
+      margin: 0 0 18px;
+      font-size: clamp(2.5rem, 6vw, 4.5rem);
+      line-height: 1.02;
+      letter-spacing: -.04em;
+    }
+
+    h1 span {
+      background: linear-gradient(100deg, #a52aff, var(--pink));
+      background-clip: text;
+      -webkit-background-clip: text;
+      color: transparent;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .hero-copy {
+      max-width: 600px;
+      margin: 0;
+      color: var(--muted);
+      font-size: 1.08rem;
+    }
+
+    .hero-image {
+      overflow: hidden;
+      min-height: 280px;
+      border: 1px solid var(--line);
+      border-radius: 22px;
+      background: var(--panel);
+      box-shadow: var(--shadow);
+    }
+
+    .hero-image img {
+      width: 100%;
+      height: 100%;
+      min-height: 280px;
+      object-fit: cover;
+    }
+
+    .section {
+      padding: 58px 0;
+      scroll-margin-top: 95px;
+    }
+
+    .section-heading {
+      max-width: 700px;
+      margin: 0 auto 30px;
+      text-align: center;
+    }
+
+    .section-heading h2 {
+      margin: 0 0 10px;
+      font-size: clamp(1.8rem, 4vw, 2.6rem);
+      line-height: 1.15;
+    }
+
+    .section-heading p {
+      margin: 0;
+      color: var(--muted);
+    }
+
+    /* Cartes de services plus modernes et faciles à lire */
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 18px;
+    }
+
+    .service-card {
+      position: relative;
+      overflow: hidden;
+      min-height: 220px;
+      padding: 24px;
+      border: 1px solid rgba(255, 255, 255, .12);
+      border-radius: 20px;
+      background:
+        linear-gradient(145deg, rgba(255, 255, 255, .075), rgba(255, 255, 255, .018)),
+        var(--panel);
+      box-shadow: 0 12px 34px rgba(0, 0, 0, .2);
+      transition: transform .2s ease, border-color .2s ease, box-shadow .2s ease;
+    }
+
+    .service-card::before {
+      position: absolute;
+      top: 0;
+      left: 22px;
+      width: 48px;
+      height: 3px;
+      border-radius: 0 0 5px 5px;
+      background: linear-gradient(90deg, var(--cyan), var(--purple));
+      content: "";
+    }
+
+    .service-card:hover {
+      transform: translateY(-5px);
+      border-color: rgba(0, 232, 255, .4);
+      box-shadow: 0 18px 40px rgba(0, 0, 0, .3);
+    }
+
+    .service-icon {
+      display: grid;
+      place-items: center;
+      width: 54px;
+      height: 54px;
+      margin-bottom: 20px;
+      border: 1px solid rgba(0, 232, 255, .3);
+      border-radius: 16px;
+      background: linear-gradient(145deg, rgba(0, 232, 255, .14), rgba(212, 0, 255, .12));
+      color: var(--cyan);
+      font-size: 1.55rem;
+    }
+
+    .service-card h3 {
+      margin: 0 0 9px;
+      font-size: 1.12rem;
+      line-height: 1.3;
+    }
+
+    .service-card p {
+      margin: 0;
+      color: #d0ccdc;
+      font-size: .96rem;
+      line-height: 1.65;
+    }
+
+    .tariffs-box {
+      width: min(800px, 100%);
+      margin: 0 auto;
+      padding: 12px;
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      background: rgba(20, 17, 31, .88);
+      box-shadow: var(--shadow);
+    }
+
+    .tariffs-box img {
+      width: 100%;
+      height: auto;
+      border-radius: 10px;
+    }
+
+    .contact-grid {
+      display: grid;
+      grid-template-columns: .8fr 1.2fr;
+      gap: 24px;
+      align-items: start;
+    }
+
+    .contact-card,
+    .form-card {
+      padding: 23px;
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      background: rgba(20, 17, 31, .88);
+      box-shadow: var(--shadow);
+    }
+
+    .contact-card h3,
+    .form-card h3 {
+      margin: 0 0 8px;
+    }
+
+    .contact-item {
+      margin-top: 18px;
+      color: var(--muted);
+    }
+
+    .contact-item strong {
+      display: block;
+      margin-bottom: 3px;
+      color: var(--white);
+    }
+
+    .contact-item a {
+      color: var(--cyan);
+      overflow-wrap: anywhere;
+    }
+
+    .form-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 15px;
+    }
+
+    .field {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    .field.full { grid-column: 1 / -1; }
+    .field label { font-weight: 700; }
+
+    .field input,
+    .field select,
+    .field textarea {
+      width: 100%;
+      padding: 11px 12px;
+      border: 1px solid var(--line);
+      border-radius: 10px;
+      outline: none;
+      background: #0c0a15;
+      color: var(--white);
+    }
+
+    .field input:focus,
+    .field select:focus,
+    .field textarea:focus {
+      border-color: var(--cyan);
+    }
+
+    .field textarea {
+      min-height: 130px;
+      resize: vertical;
+    }
+
+    .form-help {
+      margin-left: 10px;
+      color: var(--muted);
+      font-size: .86rem;
+    }
+
+    footer {
+      margin-top: 25px;
+      border-top: 1px solid var(--line);
+    }
+
+    .footer-inner {
+      min-height: 72px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 15px;
+      color: var(--muted);
+      font-size: .9rem;
+    }
+
+    .footer-inner a { color: var(--white); }
+
+    @media (max-width: 980px) {
+      .nav { flex-wrap: wrap; padding: 12px 0; }
+      .nav-links { gap: 14px; }
+      .services-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+
+    .launch-banner {
+      position: relative;
+      overflow: hidden;
+      padding: 13px 18px;
+      border-bottom: 1px solid rgba(0, 232, 255, .22);
+      background: linear-gradient(100deg, rgba(20, 17, 31, .98), rgba(35, 18, 52, .96) 55%, rgba(10, 31, 39, .98));
+      text-align: center;
+    }
+    .launch-banner::before {
+      content: "";
+      position: absolute;
+      inset: 0 auto 0 0;
+      width: 4px;
+      background: linear-gradient(var(--purple), var(--cyan));
+    }
+    .launch-banner p { margin: 0; color: var(--white); font-weight: 750; letter-spacing: .01em; }
+    .launch-banner strong { color: var(--cyan); }
+    .promo-overlay {
+      position: fixed; inset: 0; z-index: 1000; display: grid; place-items: center;
+      padding: 20px; background: rgba(5, 4, 12, .78); backdrop-filter: blur(7px);
+    }
+    .promo-overlay[hidden] { display: none; }
+    .promo-card {
+      position: relative; width: min(480px, 100%); padding: clamp(28px, 7vw, 44px);
+      border: 1px solid rgba(0, 232, 255, .5); border-radius: 24px;
+      background: radial-gradient(ellipse at 50% 0%, rgba(212, 0, 255, .23), transparent 60%), #14111f;
+      text-align: center; box-shadow: 0 24px 90px rgba(0, 0, 0, .62), 0 0 34px rgba(0, 232, 255, .16);
+      animation: promo-arrive .42s ease-out both, promo-glow 2.8s ease-in-out .5s infinite;
+    }
+    .promo-close {
+      position: absolute; top: 12px; right: 12px; display: grid; place-items: center;
+      width: 40px; height: 40px; border: 1px solid var(--line); border-radius: 50%;
+      background: rgba(255,255,255,.06); color: white; font-size: 1.45rem; cursor: pointer;
+    }
+    .promo-close:hover { background: rgba(255,255,255,.14); }
+    .promo-kicker { margin: 0 0 8px; color: var(--cyan); font-size: .78rem; font-weight: 900; letter-spacing: .16em; text-transform: uppercase; }
+    .promo-card h2 { margin: 0 0 12px; font-size: clamp(1.65rem, 6vw, 2.25rem); line-height: 1.12; }
+    .promo-card > p:not(.promo-kicker) { margin: 0; color: var(--muted); }
+    .promo-code { display: inline-block; margin-top: 20px; padding: 11px 17px; border: 1px dashed rgba(0,232,255,.66); border-radius: 12px; background: rgba(0,232,255,.08); color: white; font-size: 1.1rem; font-weight: 900; letter-spacing: .055em; }
+    @keyframes promo-arrive { from { opacity: 0; transform: translateY(12px) scale(.97); } to { opacity: 1; transform: translateY(0) scale(1); } }
+    @keyframes promo-glow { 0%,100% { box-shadow: 0 24px 90px rgba(0,0,0,.62), 0 0 24px rgba(0,232,255,.12); } 50% { box-shadow: 0 24px 90px rgba(0,0,0,.62), 0 0 38px rgba(212,0,255,.25); } }
+    @media (prefers-reduced-motion: reduce) { .promo-card { animation: none; } }
+
+    @media (max-width: 700px) {
+      .container { width: min(100% - 26px, 1120px); }
+
+      .topbar-inner {
+        flex-direction: column;
+        text-align: center;
+      }
+
+      .topbar-actions { justify-content: center; }
+
+      .nav { justify-content: space-between; }
+
+      .menu-toggle {
+        display: block;
+        order: 2;
+      }
+
+      .nav-links {
+        display: none;
+        order: 3;
+        width: 100%;
+        flex-direction: column;
+        gap: 0;
+        padding: 8px 0;
+      }
+
+      .nav-links.open { display: flex; }
+
+      .nav-links a {
+        width: 100%;
+        padding: 10px;
+        text-align: center;
+      }
+
+      .hero { padding-top: 35px; }
+
+      .hero-grid,
+      .contact-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .hero-grid > div:first-child,
+      .hero-image,
+      .hero-services {
+        grid-column: 1;
+        grid-row: auto;
+      }
+
+      .hero-image { order: -1; }
+
+      .hero-image,
+      .hero-image img {
+        min-height: 210px;
+      }
+    }
+
+    @media (max-width: 520px) {
+      .hero-services,
+      .form-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .service-button { min-height: 100px; padding: 13px; }
+      .field.full { grid-column: auto; }
+
+      .contact-card,
+      .form-card {
+        padding: 20px;
+      }
+
+      .footer-inner {
+        flex-direction: column;
+        justify-content: center;
+        padding: 16px 0;
+        text-align: center;
+      }
+
+      .topbar-actions {
+        width: 100%;
+      }
+
+      .topbar .button {
+        flex: 1;
+        padding-inline: 8px;
+        font-size: .8rem;
+      }
+    }
+  </style>
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="shop.css">
+<style>.mcp-auth-link{display:inline-flex;align-items:center;justify-content:center;min-height:40px;padding:8px 13px;border:1px solid #bd51ff;border-radius:10px;background:linear-gradient(110deg,rgba(193,0,255,.20),rgba(0,232,255,.10));color:#fff!important;text-decoration:none;font-weight:850;white-space:nowrap;box-shadow:0 0 15px #a020ff28}.mcp-auth-link:hover{border-color:#00e8ff;color:#00e8ff!important}.mcp-account-area{display:flex;align-items:center;gap:8px}.mcp-logout{min-height:38px;padding:7px 10px;border:1px solid #ffffff44;border-radius:9px;background:transparent;color:#fff;font:inherit;font-size:.86rem;cursor:pointer}@media(max-width:760px){.mcp-auth-link{font-size:.85rem;padding:7px 9px}.mcp-account-area{flex-wrap:wrap}}</style>
+</head>
+
+<body>
+  <div class="topbar">
+    <div class="container topbar-inner">
+      <div class="topbar-text">Pneus à Montgesoye · Autres prestations à venir</div>
+      <div class="topbar-actions">
+        <a class="button" id="topEmailLink" href="/cdn-cgi/l/email-protection#f09d9f9e93989f9988809e9585b09f85849c9f9f9bde939f9d">✉ E-mail</a>
+        <a class="button" href="tel:+33781960315">☎ Appeler</a>
+        <a
+          class="button"
+          href="https://www.google.com/maps/search/?api=1&query=10+rue+sous+Mouthier%2C+25111+Montgesoye"
+          target="_blank"
+          rel="noopener noreferrer"
+        >⌖ Nous trouver</a>
+      </div>
+    </div>
+  </div>
+
+  <header>
+    <div class="container nav search-nav">
+      <a class="brand" href="#accueil" aria-label="Mon Choix Pneu — accueil">
+        <span class="brand-mark" aria-hidden="true">MCP</span>
+        <span class="brand-name">
+          MON CHOIX
+          <span class="pneu">PNEU</span>
+          <span class="brand-tagline">Pneus à Montgesoye</span>
+        </span>
+      </a>
+
+<form class="top-search" id="tireSearchForm" role="search">
+        <label class="sr-only" for="tireSearch">Rechercher un pneu</label>
+        <input id="tireSearch" type="search" placeholder="Exemple : 205 55 16" autocomplete="off" aria-autocomplete="list" aria-controls="searchSuggestions">
+        <label class="sr-only" for="seasonFilter">Saison</label>
+        <select id="seasonFilter" class="season-filter" aria-label="Filtrer par saison">
+          <option value="">Toutes saisons</option><option value="ete">Été</option><option value="hiver">Hiver</option><option value="4saisons">4 saisons</option>
+        </select>
+        <button class="search-submit" type="submit" id="searchSubmit" aria-label="Rechercher"><svg aria-hidden="true" viewBox="0 0 24 24"><circle cx="10.8" cy="10.8" r="6.8"></circle><path d="m16 16 5 5"></path></svg></button>
+        <div id="searchSuggestions" class="suggestions" role="listbox" aria-label="Suggestions de pneus" hidden></div>
+      </form>
+      <a class="cart-link search-cart" href="panier.html" aria-label="Ouvrir le panier">🛒 Panier <span class="cart-count" data-cart-count>0</span></a>
+
+      <button
+        class="menu-toggle"
+        id="menuToggle"
+        type="button"
+        aria-label="Ouvrir le menu"
+        aria-expanded="false"
+        aria-controls="navLinks"
+      >☰</button>
+
+      <nav class="nav-links" id="navLinks" aria-label="Navigation principale">
+        <a href="#accueil">Accueil</a>
+        <a href="#services">Nos services</a>
+        <a href="#tarifs">Nos tarifs</a>
+        <a href="#contact">Contact</a>
+        <a class="mcp-auth-link" data-auth-link href="compte.html">Se connecter / Mon compte</a>
+      </nav>
+    </div>
+  </header>
+
+  <aside class="launch-banner" aria-label="Information importante">
+    <p><strong>Vos spécialistes pneus à Montgesoye</strong></p>
+  </aside>
+
+  <div class="promo-overlay" id="promoOverlay" hidden>
+    <section class="promo-card" role="dialog" aria-modal="true" aria-labelledby="promoTitle" aria-describedby="promoDescription">
+      <button class="promo-close" id="promoClose" type="button" aria-label="Fermer la fenêtre promotionnelle">×</button>
+      <p class="promo-kicker">Offre de bienvenue</p>
+      <h2 id="promoTitle">Offres ponctuelles</h2>
+      <p id="promoDescription">Les codes promotionnels valides seront communiqués lors des offres correspondantes.</p>
+    </section>
+  </div>
+
+  <main>
+    <section class="hero" id="accueil">
+      <div class="container hero-grid">
+        <div class="hero-services" id="services" aria-label="Choisissez votre besoin">
+          <div class="eyebrow">Le bon service pour votre véhicule</div>
+          <a class="service-card service-button" href="resultats.html" aria-label="Trouver vos pneus ici">
+            <span class="service-icon" aria-hidden="true">◉</span><strong>Trouver vos pneus ici</strong><small>Pneus adaptés à votre véhicule, sur commande.</small>
+          </a>
+          <button class="service-card service-button service-disabled" type="button" disabled aria-disabled="true">
+            <span class="coming-badge">À venir</span><span class="service-icon" aria-hidden="true">⚙</span><strong>Montage et équilibrage</strong><small>Cette prestation sera bientôt proposée.</small>
+          </button>
+          <button class="service-card service-button service-disabled" type="button" disabled aria-disabled="true">
+            <span class="coming-badge">À venir</span><span class="service-icon" aria-hidden="true">✚</span><strong>Crevaison</strong><small>Cette prestation sera bientôt proposée.</small>
+          </button>
+          <button class="service-card service-button service-disabled" type="button" disabled aria-disabled="true">
+            <span class="coming-badge">À venir</span><span class="service-icon" aria-hidden="true">🔧</span><strong>Mécanique sur demande</strong><small>À venir</small>
+          </button>
+        </div>
+
+        <div class="hero-image">
+          <img
+            src="affiche-entete.png"
+            alt="Affiche Mon Choix Pneu"
+            fetchpriority="high"
+          >
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="tarifs">
+      <div class="container">
+        <div class="section-heading">
+          <div class="eyebrow">Nos tarifs</div>
+          <h2>Consultez notre affiche tarifaire</h2>
+          <p>Retrouvez nos tarifs et prestations sur l’affiche ci-dessous.</p>
+        </div>
+
+        <div class="tariffs-box" id="tariffsBox">
+          <img
+            src="affiche-tarifs.png"
+            alt="Affiche des tarifs et prestations de Mon Choix Pneu"
+            loading="lazy"
+          >
+        </div>
+        <p id="tariffsNote" class="hero-copy" hidden>Les tarifs des prestations seront publiés lors de leur mise en service.</p>
+      </div>
+    </section>
+
+    <section class="section" id="contact">
+      <div class="container">
+        <div class="section-heading">
+          <div class="eyebrow">Nous contacter</div>
+          <h2>Parlons de votre besoin</h2>
+          <p>Appelez-nous, écrivez-nous ou envoyez votre demande avec le formulaire.</p>
+        </div>
+
+        <div class="contact-grid">
+          <aside class="contact-card">
+            <h3>Nos coordonnées</h3>
+
+            <div class="contact-item">
+              <strong>Téléphone</strong>
+              <a href="tel:+33781960315">07 81 96 03 15</a>
+            </div>
+
+            <div class="contact-item">
+              <strong>E-mail</strong>
+              <a id="contactEmailLink" href="/cdn-cgi/l/email-protection#294446474a4146405159474c5c69465c5d45464642074a4644">monchoixpneu&#64;outlook&#46;com</a>
+            </div>
+
+            <div class="contact-item">
+              <strong>Adresse</strong>
+              10 rue sous Mouthier<br>
+              25111 Montgesoye
+            </div>
+          </aside>
+
+          <div class="form-card">
+            <h3>Envoyez-nous un message</h3>
+
+            <form name="contact" method="POST" data-netlify="true">
+              <input type="hidden" name="form-name" value="contact">
+
+              <div class="form-grid">
+                <div class="field">
+                  <label for="nom">Nom *</label>
+                  <input id="nom" name="nom" autocomplete="name" required>
+                </div>
+
+                <div class="field">
+                  <label for="telephone">Téléphone</label>
+                  <input id="telephone" name="telephone" type="tel" autocomplete="tel">
+                </div>
+
+                <div class="field full">
+                  <label for="besoin">Votre besoin</label>
+                  <select id="besoin" name="besoin">
+                    <option value="">Choisissez une prestation</option>
+                    <option>Vente de pneus</option>
+                    <option data-prestation-option hidden disabled>Montage et équilibrage</option>
+                    <option data-prestation-option hidden disabled>Crevaison</option>
+                    <option data-prestation-option hidden disabled>Pneus à Montgesoye</option>
+                    <option>Autre demande</option>
+                  </select>
+                </div>
+
+                <div class="field full">
+                  <label for="message">Votre message *</label>
+                  <textarea
+                    id="message"
+                    name="message"
+                    required
+                    placeholder="Décrivez votre demande et indiquez votre véhicule…"
+                  ></textarea>
+                </div>
+
+                <div class="field full">
+                  <button class="button" type="submit">Envoyer ma demande →</button>
+                  <span class="form-help">* Champs obligatoires</span>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container footer-inner">
+      <span>© <span id="year"></span> Mon Choix Pneu</span>
+      <span>
+        10 rue sous Mouthier, 25111 Montgesoye ·
+        <button class="history-back" type="button" onclick="if(history.length&gt;1)history.back();else location.href='index.html'">← Retour</button>
+      </span>
+    </div>
+  </footer>
+
+  <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+    const PRESTATIONS_ACTIVE = false; // Réactiver pour remettre en service les prestations différées.
+    const emailHref = "mailto:monchoixpneu@" + "outlook.com";
+    document.getElementById("topEmailLink").href = emailHref;
+    document.getElementById("contactEmailLink").href = emailHref;
+
+    const menuToggle = document.getElementById("menuToggle");
+    const navLinks = document.getElementById("navLinks");
+
+    menuToggle.addEventListener("click", () => {
+      const isOpen = navLinks.classList.toggle("open");
+
+      menuToggle.setAttribute("aria-expanded", String(isOpen));
+      menuToggle.setAttribute(
+        "aria-label",
+        isOpen ? "Fermer le menu" : "Ouvrir le menu"
+      );
+    });
+
+    navLinks.querySelectorAll("a").forEach((link) => {
+      link.addEventListener("click", () => {
+        navLinks.classList.remove("open");
+        menuToggle.setAttribute("aria-expanded", "false");
+        menuToggle.setAttribute("aria-label", "Ouvrir le menu");
+      });
+    });
+
+    document.getElementById("year").textContent = new Date().getFullYear();
+
+    const promoOverlay = document.getElementById("promoOverlay");
+    const promoClose = document.getElementById("promoClose");
+    const closePromo = () => { promoOverlay.hidden = true; };
+    promoClose.addEventListener("click", closePromo);
+    promoOverlay.addEventListener("click", (event) => {
+      if (event.target === promoOverlay) closePromo();
+    });
+    document.addEventListener("keydown", (event) => {
+      if (event.key === "Escape" && !promoOverlay.hidden) closePromo();
+    });
+    promoOverlay.hidden = !PRESTATIONS_ACTIVE;
+    if (PRESTATIONS_ACTIVE) promoClose.focus();
+    document.getElementById("tariffsBox").hidden = !PRESTATIONS_ACTIVE;
+    document.getElementById("tariffsNote").hidden = PRESTATIONS_ACTIVE;
+
+    document.querySelectorAll('[data-prestation-option]').forEach(option => { option.hidden = !PRESTATIONS_ACTIVE; option.disabled = !PRESTATIONS_ACTIVE; });
+
+    const contactForm = document.querySelector('form[name="contact"]');
+    contactForm.addEventListener("submit", (event) => {
+      event.preventDefault();
+
+      const fields = new FormData(contactForm);
+      const dateEnvoi = new Intl.DateTimeFormat("fr-FR", {
+        dateStyle: "long",
+        timeStyle: "short"
+      }).format(new Date());
+      const message = [
+        "Nouvelle demande de contact reçue depuis le site internet",
+        `Date et heure d’envoi : ${dateEnvoi}`,
+        "",
+        `Nom : ${fields.get("nom") || ""}`,
+        `Téléphone : ${fields.get("telephone") || ""}`,
+        `Besoin : ${fields.get("besoin") || ""}`,
+        `Message : ${fields.get("message") || ""}`
+      ].join("\n");
+      const subject = "Demande de contact - Site Mon Choix Pneu";
+      const mailto = `mailto:monchoixpneu@outlook.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(message)}`;
+
+      window.location.href = mailto;
+      window.setTimeout(() => {
+        window.location.href = "merci.html";
+      }, 700);
+    });
+  </script>
+<script type="module" src="https://static.cloudflareinsights.com/beacon.min.js/vce701823e78c4301a35b7e07294d87301792088814092" integrity="sha512-UKNk8GbxkABxKcXYuLkO16EleLGUkcvJWtpSNmExE0Too3ZaFAxTscNWEc1OdAv5/BikHawapSCaiD2XCmp+Bw==" data-cf-beacon='{"version":"2024.11.0","token":"8607d2a720d14b038279025b2b5a82e5","spa":2}' crossorigin="anonymous"></script>
+<script src="supabase-config.js"></script>
+<script src="cart.js"></script>
+  <script src="search.js"></script>
+<script type="module" src="https://static.cloudflareinsights.com/beacon.min.js/vce701823e78c4301a35b7e07294d87301792088814092" integrity="sha512-UKNk8GbxkABxKcXYuLkO16EleLGUkcvJWtpSNmExE0Too3ZaFAxTscNWEc1OdAv5/BikHawapSCaiD2XCmp+Bw==" data-cf-beacon='{"version":"2024.11.0","token":"8607d2a720d14b038279025b2b5a82e5","spa":2}' crossorigin="anonymous"></script>
+<script type="module" src="https://static.cloudflareinsights.com/beacon.min.js/vce701823e78c4301a35b7e07294d87301792088814092" integrity="sha512-UKNk8GbxkABxKcXYuLkO16EleLGUkcvJWtpSNmExE0Too3ZaFAxTscNWEc1OdAv5/BikHawapSCaiD2XCmp+Bw==" data-cf-beacon='{"version":"2024.11.0","token":"8607d2a720d14b038279025b2b5a82e5","spa":2}' crossorigin="anonymous"></script>
+<script type="module" src="https://static.cloudflareinsights.com/beacon.min.js/vce701823e78c4301a35b7e07294d87301792088814092" integrity="sha512-UKNk8GbxkABxKcXYuLkO16EleLGUkcvJWtpSNmExE0Too3ZaFAxTscNWEc1OdAv5/BikHawapSCaiD2XCmp+Bw==" data-cf-beacon='{"version":"2024.11.0","token":"8607d2a720d14b038279025b2b5a82e5","spa":2}' crossorigin="anonymous"></script>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="auth.js"></script>
+<script type="module" src="https://static.cloudflareinsights.com/beacon.min.js/vce701823e78c4301a35b7e07294d87301792088814092" integrity="sha512-UKNk8GbxkABxKcXYuLkO16EleLGUkcvJWtpSNmExE0Too3ZaFAxTscNWEc1OdAv5/BikHawapSCaiD2XCmp+Bw==" data-cf-beacon='{"version":"2024.11.0","token":"8607d2a720d14b038279025b2b5a82e5","spa":2}' crossorigin="anonymous"></script>
+</body>
+</html>
